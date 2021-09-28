@@ -29,8 +29,6 @@ public class Parser {
         try {
             scanner = new Scanner(file, StandardCharsets.UTF_8);
             scanner.useLocale(new Locale("ru", "RU"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +36,7 @@ public class Parser {
             String line = scanner.nextLine();
             list.add(line);
         }
-        /*try( Scanner scanner = new Scanner(file).useDelimiter("[^а-яА-Я]+") ) {
+        /*try( Scanner scanner = new Scanner(file) ) {
             String line = scanner.nextLine();
             while (scanner.hasNextLine()) {
                 list.add(line);
