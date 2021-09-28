@@ -14,11 +14,10 @@ public class Main {
             e.printStackTrace();
         }
         list = parser.parseAlt(file);
-        list.forEach(System.out::println);
+        //list.forEach(System.out::println);
 
 
         long counter = 0;
-        //Locale rus = new Locale("ru", "RU");
         ArrayList<String> intrans = new ArrayList<>();
         intrans.add("Страдани");
         intrans.add("страдани");

@@ -28,7 +28,7 @@ public class Parser {
         ArrayList<String> list = new ArrayList<>();
         try {
             scanner = new Scanner(file, StandardCharsets.UTF_8);
-            scanner.useLocale(new Locale("ru", "RU"));
+            //scanner.useLocale(new Locale("ru", "RU"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,15 +36,6 @@ public class Parser {
             String line = scanner.nextLine();
             list.add(line);
         }
-        /*try( Scanner scanner = new Scanner(file) ) {
-            String line = scanner.nextLine();
-            while (scanner.hasNextLine()) {
-                list.add(line);
-                line = scanner.nextLine();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }*/
         return list;
     }
 }
