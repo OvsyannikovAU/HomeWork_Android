@@ -9,11 +9,11 @@ public class Main {
         ArrayList<String> list=null;
         ArrayList<String> listAlt = null;
         try {
-            list = parser.parse(file);
+            list = parser.parse(file); //прервый способ считывания файла
         } catch (IOException e) {
             e.printStackTrace();
         }
-        list = parser.parseAlt(file);
+        list = parser.parseAlt(file); //второй способ считывания файла
         //list.forEach(System.out::println);
 
 
@@ -34,6 +34,6 @@ public class Main {
         System.out.println("Количество вхождений:"+counter);
 
         Multiplication mult = new Multiplication();
-        mult.printTable(10);
+        mult.printTable(10); //вывод таблицы умножения от 1 до 10
     }
 }
