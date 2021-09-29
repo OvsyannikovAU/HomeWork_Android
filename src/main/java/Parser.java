@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -11,7 +12,6 @@ public class Parser {
         ArrayList<String> list = new ArrayList<>();
         try{
             reader = new BufferedReader(new FileReader(file));
-            //reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }
@@ -34,8 +34,14 @@ public class Parser {
         }
         while (scanner.hasNextLine()){
             String line = scanner.nextLine();
+            try {
+                line = new String(line.getBytes("UTF-8"), Charset.forName("windows-1251"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             list.add(line);
         }
+        scanner.close();
         return list;
     }
 }
