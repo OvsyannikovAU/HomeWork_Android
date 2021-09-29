@@ -1,39 +1,55 @@
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        File file = new File("voyna.txt");
-        Parser parser = new Parser();
-        ArrayList<String> list=null;
-        ArrayList<String> listAlt = null;
-        try {
-            list = parser.parse(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        list = parser.parseAlt(file);
-        //list.forEach(System.out::println);
+        LinkedList<String> linkedList = new LinkedList<String>();
+        ArrayList<String> arrayList = new ArrayList<>();
+        String a = "1";
+        String b = "2";
+        String c = "3";
+        String d = "not_number";
+        linkedList.add(a);
+        linkedList.add(b);
+        linkedList.add(c);
+        linkedList.add(d);
+        arrayList.add(a);
+        arrayList.add(b);
+        arrayList.add(c);
+        arrayList.add(d);
 
 
-        long counter = 0;
-        ArrayList<String> intrans = new ArrayList<>();
-        intrans.add("Страдани");
-        intrans.add("страдани");
-        intrans.add("СТРАДАНИ");
-        for (String strBase:list) {
-            String localStr=strBase;
-            for(String strIntrans:intrans){
-                while(localStr.contains(strIntrans)){
-                    counter++;
-                    localStr = localStr.substring( localStr.indexOf(strIntrans)+strIntrans.length() );
-                }
+        //первый способ удаления
+        ArrayList<Integer> delPos = new ArrayList<Integer>();  //отдельный список, уранящий удаляемые из базового листа позиции
+        for (int i = 0; i < linkedList.size(); i++) {          //перебираем базовый список
+            if (linkedList.get(i) == "not_number") {    //если нашли элемент для удаления, то
+                delPos.add(i);                          //запоминаем его индекс в отдельный список
             }
         }
-        System.out.println("Количество вхождений:"+counter);
+        for (int i = 0; i < delPos.size(); i++) {              //теперь перебираем отдельный список
+            linkedList.remove((int) delPos.get(i));   //и удаляем из базового списка элементы с индесками из особого списка
+        }
 
-        Multiplication mult = new Multiplication();
-        mult.printTable(10);
+        //второй способ удаления
+        int j = 0;                                        //счетчик текущей позиции в массиве
+        while (j < arrayList.size()) {                    //проверяем, что массив еще не закончился
+            if (arrayList.get(j) == "not_number") {
+                arrayList.remove(j);
+            } else {
+                j++;                                    //увелчиваем j только если не удаляли элемент из массива
+            }
+        }
+
+        //теперь распечатаем оставшиеся элементы
+        System.out.println("ArrayList:");
+        for (int i = 0; i < arrayList.size(); i++) {
+            System.out.println(arrayList.get(i));
+        }
+        System.out.println("LinkedList:");
+        for (int i = 0; i < linkedList.size(); i++) {
+            System.out.println(linkedList.get(i));
+        }
+
+
     }
 }
