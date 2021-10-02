@@ -1,35 +1,53 @@
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class MyArrayList<E> implements List {
     private E[] values;
+    private Object[] elements;
     private int size = 0;
 
     @Override
     public int size() {
-        return this.size;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            int current;
+            int lastRet = -1; // index of last element returned; -1 if no such
+
+            @Override
+            public boolean hasNext() {
+                return current != size;
+            }
+
+            @Override
+            public E next() {
+                int i = current;
+                if (i >= size)
+                    throw new NoSuchElementException();
+                Object[] elementData = MyArrayList.this.elements;
+                if (i >= elementData.length)
+                    throw new ConcurrentModificationException();
+                current = i + 1;
+                return (E) elementData[lastRet = i];
+            }
+        };
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(elements, size);
     }
 
     @Override
