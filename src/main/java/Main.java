@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
+import MultiThreads.MainThreads;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList<String> linkedList = new LinkedList<String>();
+        /*LinkedList<String> linkedList = new LinkedList<String>();
         ArrayList<String> arrayList = new ArrayList<>();
         String a = "1";
         String b = "2";
@@ -48,8 +47,10 @@ public class Main {
         System.out.println("LinkedList:");
         for (int i = 0; i < linkedList.size(); i++) {
             System.out.println(linkedList.get(i));
-        }
+        }*/
 
 
+        MainThreads mt = new MainThreads();
+        mt.run();
     }
 }
